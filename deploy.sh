@@ -31,7 +31,7 @@ while [[ $WORDPRESS_POD_NAME = '' ]]
  
 MYSQL_CONTAINER=$(minikube ssh "docker ps |grep mysql |grep entrypoint" |awk '{print $1}')
 DUMP_URL="https://raw.githubusercontent.com/rafmonteiro/et/master/dump.sql"
-WP_URL=$(minikube service wordpress --url |tr -d 'http:/')
+WP_URL=$(minikube service wordpress --url |tr -d 'http/'| cut -c2-)
 minikube ssh "curl -O $DUMP_URL; sed -i -e 's/192.168.99.101:30106/$WP_URL/g' dump.sql"
 #minikube ssh "cat dump.sql | docker exec -i $MYSQL_CONTAINER /usr/bin/mysql -uroot --password=supersecret"
 sleep 5
