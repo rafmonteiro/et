@@ -36,5 +36,5 @@ minikube ssh "curl -O $DUMP_URL; sed -i -e 's/192.168.99.101:30106/$WP_URL/g' du
 #minikube ssh "cat dump.sql | docker exec -i $MYSQL_CONTAINER /usr/bin/mysql -uroot --password=supersecret"
 sleep 5
 minikube ssh "docker exec -i $MYSQL_CONTAINER /usr/bin/mysql -uroot --password=supersecret wordpress < dump.sql"
- 
-echo "open $(minikube service wordpress --url)/p?=5  on your browser" 
+minikube ssh "rm dump.sql"
+minikube service wordpress
