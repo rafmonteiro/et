@@ -33,7 +33,7 @@ metadata:
     app: wordpress
 spec:
   strategy:
-    type: Recreate
+    type: RollingUpdate
   template:
     metadata:
       labels:
